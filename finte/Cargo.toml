@@ -1,0 +1,12 @@
+[package]
+name = "finte"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies.finte-derive]
+path = "../finte-derive"
+optional = true
+
+[features]
+default = [ "derive" ]
+derive = [ "finte-derive" ]

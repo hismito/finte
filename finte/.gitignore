@@ -5,5 +5,4 @@
 
 !/Cargo.toml
 
-!/finte
-!/finte-derive
+!/src

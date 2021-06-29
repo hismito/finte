@@ -1,0 +1,10 @@
+[package]
+name = "finte-derive"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dev-dependencies]
+finte = { path = "../finte" }
