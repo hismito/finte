@@ -2,9 +2,8 @@
 name = "finte-derive"
 version = "0.1.0"
 edition = "2018"
+description = "#[derive(IntEnum)] support for finte"
+license = "MIT"
 
 [lib]
 proc-macro = true
-
-[dev-dependencies]
-finte = { path = "../finte" }
