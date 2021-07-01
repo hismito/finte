@@ -16,7 +16,7 @@ pub fn derive_int_enum(input: TokenStream) -> TokenStream {
 }
 
 fn parse_input(input: TokenStream) -> Result<DeriveInput, Error> {
-    let mut tt_iter = input.into_iter();
+    let mut tt_iter = input.into_iter().peekable();
 
     let mut repr = None;
     loop {
@@ -24,16 +24,23 @@ fn parse_input(input: TokenStream) -> Result<DeriveInput, Error> {
             TokenTree::Punct(punct) => {
                 assert_eq!(punct.as_char(), '#');
             }
-            TokenTree::Ident(ident) => {
-                if ident.to_string() != "enum" {
+            TokenTree::Ident(ident) => match ident.to_string().as_str() {
+                "pub" => {
+                    if let Some(TokenTree::Group(_)) = tt_iter.peek() {
+                        tt_iter.next().expect("vis path");
+                    }
+                    continue;
+                }
+                "enum" => {
+                    break;
+                }
+                _ => {
                     return Err(Error::new(
                         ident.span(),
                         "unsupported type: try using an enum instead",
                     ));
                 }
-
-                break;
-            }
+            },
             _ => panic!("expect outer meta"),
         }
 

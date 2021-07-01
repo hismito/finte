@@ -7,3 +7,6 @@ license = "MIT"
 
 [lib]
 proc-macro = true
+
+[dev-dependencies]
+finte = "0.1"
