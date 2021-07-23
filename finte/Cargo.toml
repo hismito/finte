@@ -7,7 +7,7 @@ repository = "https://github.com/hismito/finte"
 license = "MIT"
 
 [dependencies.finte-derive]
-version = "0.1.2"
+version = "0.2"
 optional = true
 
 [features]
