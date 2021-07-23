@@ -3,6 +3,7 @@ name = "finte"
 version = "0.1.2"
 edition = "2018"
 description = "convert between integer and Rust enum"
+repository = "https://github.com/hismito/finte"
 license = "MIT"
 
 [dependencies.finte-derive]
