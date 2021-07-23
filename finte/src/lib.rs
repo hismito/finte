@@ -25,10 +25,7 @@ impl<T: IntEnum> TryFromIntError<T> {
     }
 }
 
-impl<T: IntEnum> fmt::Display for TryFromIntError<T>
-where
-    T::Int: fmt::Display,
-{
+impl<T: IntEnum> fmt::Display for TryFromIntError<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "invalid value for int enum")
     }
@@ -48,4 +45,4 @@ where
     }
 }
 
-impl<T: IntEnum> std::error::Error for TryFromIntError<T> where T::Int: fmt::Display + fmt::Debug {}
+impl<T: IntEnum> std::error::Error for TryFromIntError<T> where T::Int: fmt::Debug {}
