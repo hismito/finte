@@ -9,4 +9,4 @@ license = "MIT"
 proc-macro = true
 
 [dev-dependencies]
-finte = "0.1"
+finte = { path = "../finte" }

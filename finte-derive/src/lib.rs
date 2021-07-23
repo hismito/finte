@@ -163,14 +163,18 @@ fn generate_impl(input: &DeriveInput) -> Result<TokenStream, Error> {
     {
         writeln!(
             ts,
-            "    fn try_from_int(value: Self::Int) -> Option<Self> {{"
+            "    fn try_from_int(value: Self::Int) -> std::result::Result::<Self, finte::TryFromIntError<Self>> {{"
         )
         .unwrap();
         writeln!(ts, "        match value {{").unwrap();
         for (name, value) in input.variants.iter() {
-            writeln!(ts, "            {} => Some(Self::{}),", value, name).unwrap();
+            writeln!(ts, "            {} => Ok(Self::{}),", value, name).unwrap();
         }
-        writeln!(ts, "            _ => None,").unwrap();
+        writeln!(
+            ts,
+            "            _ => Err(finte::TryFromIntError::new(value)),"
+        )
+        .unwrap();
         writeln!(ts, "        }}").unwrap();
         writeln!(ts, "    }}").unwrap();
     }
