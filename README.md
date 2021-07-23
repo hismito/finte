@@ -19,12 +19,12 @@ pub enum RustEdition {
 impl finte::IntEnum for RustEdition {
     type Int = u16;
 
-    fn try_from_int(value: Self::Int) -> Option<Self> {
+    fn try_from_int(value: Self::Int) -> Result<Self, finte::TryFromIntError<Self>> {
         match value {
-            2015 => Some(Self::Prev),
-            2018 => Some(Self::Now),
-            2021 => Some(Self::Next),
-            _ => None,
+            2015 => Ok(Self::Prev),
+            2018 => Ok(Self::Now),
+            2021 => Ok(Self::Next),
+            invalid_value => Err(finte::TryFromIntError::new(invalid_value)),
         }
     }
 
